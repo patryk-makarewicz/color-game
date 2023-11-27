@@ -1,0 +1,11 @@
+{
+  "greetings": "Welcome in Color Game!",
+
+  "header": {
+    "title": "This is the website to manage users"
+  },
+
+  "footer": {
+    "copyright": "Copyright Ⓒ {{year}} makaDev Patryk Makarewicz"
+  }
+}
