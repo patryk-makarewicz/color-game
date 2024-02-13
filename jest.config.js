@@ -13,6 +13,8 @@ const customJestConfig = {
   setupFilesAfterEnv: ['@testing-library/jest-dom', '<rootDir>/setupTests.ts'],
   collectCoverage: true,
   coverageDirectory: '<rootDir>../.coverage',
+  coverageProvider: 'v8',
+  coverageReporters: ['text-summary'],
   collectCoverageFrom: [
     '<rootDir>/**/*.{ts,tsx}',
     '!<rootDir>/**/index.{ts,tsx}',
@@ -21,8 +23,8 @@ const customJestConfig = {
     '!<rootDir>/**/*.d.ts',
     '!<rootDir>/**/layout.*',
     '!<rootDir>/api/**/*',
+    '!<rootDir>/i18n/**/*',
     '!<rootDir>/lib/**/*',
-    '!<rootDir>/redux/**/*',
     '!<rootDir>/styles/**/*',
     '!<rootDir>/tests/**/*'
   ]

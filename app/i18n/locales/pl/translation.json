@@ -1,7 +1,20 @@
 {
+  "app": "Colors Game",
   "page": {
     "home": {
-      "greetings": "Color Game App"
+      "description": "Color Game jest to gra dla dzieci do nauki kolorów",
+      "label": "Podaj swoje imię",
+      "button": {
+        "start": "Start",
+        "results": "Wyniki"
+      }
+    },
+    "game": {
+      "description": "Game Page"
+    },
+    "results": {
+      "description": "Results Page",
+      "back": "Powrót"
     }
   }
 }
