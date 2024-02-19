@@ -1,3 +1,5 @@
+'use client';
+
 type CustomButtonProps = {
   children: React.ReactNode;
   kind?: 'default' | 'secondary';
