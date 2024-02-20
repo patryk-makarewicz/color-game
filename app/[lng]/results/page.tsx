@@ -9,11 +9,19 @@ const ResultsPage = async ({ params: { lng } }: lngProps) => {
   const { t } = await useTranslation(lng);
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-3">
-      <h3>{t('page.results.description')}</h3>
-      <Link href={`/${lng}`} className="pb-6">
-        <Button>{t('page.results.back')}</Button>
-      </Link>
+    <div className="flex h-screen items-center justify-center bg-gray-50">
+      <div className="mx-3 flex w-96 flex-col items-center gap-6 rounded bg-white p-8 shadow-xl">
+        <h3 className="text-2xl font-bold text-appPrimary">{t('app')}</h3>
+        <p className="text-lg">{t('page.results.description')}</p>
+        <ul>
+          <li>1. Kacper - 100 pkt.</li>
+          <li>2. Zuzia - 100 pkt.</li>
+          <li>3. Jogi - 100 pkt.</li>
+        </ul>
+        <Link href={`/${lng}`} className="pb-6">
+          <Button>{t('page.results.back')}</Button>
+        </Link>
+      </div>
     </div>
   );
 };

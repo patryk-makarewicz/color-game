@@ -1,13 +1,22 @@
+import Link from 'next/link';
+
 import { lngProps } from '@/[lng]/page';
 
+import { Button } from '@/components/button';
 import { useTranslation } from '@/i18n';
 
 const GamePage = async ({ params: { lng } }: lngProps) => {
   const { t } = await useTranslation(lng);
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-3">
-      <h3>{t('page.game.description')}</h3>
+    <div className="flex h-screen items-center justify-center bg-gray-50">
+      <div className="mx-3 flex w-96 flex-col items-center gap-6 rounded bg-white p-8 shadow-xl">
+        <h3 className="text-2xl font-bold text-appPrimary">{t('app')}</h3>
+        <p className="text-lg">{t('page.game.description')}</p>
+        <Link href={`/${lng}`} className="pb-6">
+          <Button>{t('page.results.back')}</Button>
+        </Link>
+      </div>
     </div>
   );
 };
