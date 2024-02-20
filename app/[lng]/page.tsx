@@ -19,9 +19,6 @@ const Home = async ({ params: { lng } }: lngProps) => {
         <h3 className="text-2xl font-bold text-appPrimary">{t('app')}</h3>
         <p className="text-lg">{t('page.home.description')}</p>
         <User lng={lng} />
-        <Link href={`/${lng}/game`}>
-          <Button>{t('page.home.button.start')}</Button>
-        </Link>
         <Link href={`/${lng}/results`}>
           <Button>{t('page.home.button.results')}</Button>
         </Link>

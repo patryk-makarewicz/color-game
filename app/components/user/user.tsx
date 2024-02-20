@@ -1,5 +1,8 @@
 'use client';
 
+import Link from 'next/link';
+
+import { Button } from '@/components/button';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useTranslation } from '@/i18n/client';
 
@@ -12,14 +15,19 @@ export const User = ({ lng }: { lng: string }) => {
   };
 
   return (
-    <input
-      type="text"
-      className="w-full rounded border border-gray-300 p-2"
-      placeholder={t('page.home.label')}
-      value={inputValue}
-      onChange={handleInputChange}
-      minLength={3}
-      maxLength={20}
-    />
+    <div className="flex w-full flex-col items-center gap-6">
+      <input
+        type="text"
+        className="w-full rounded border border-gray-300 p-2"
+        placeholder={t('page.home.label')}
+        value={inputValue}
+        onChange={handleInputChange}
+        minLength={3}
+        maxLength={20}
+      />
+      <Link href={`/${lng}/game`}>
+        <Button disabled={inputValue.length < 3}>{t('page.home.button.start')}</Button>
+      </Link>
+    </div>
   );
 };
