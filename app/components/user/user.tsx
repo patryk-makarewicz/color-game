@@ -18,6 +18,7 @@ export const User = ({ lng }: { lng: string }) => {
       placeholder={t('page.home.label')}
       value={inputValue}
       onChange={handleInputChange}
+      minLength={3}
       maxLength={20}
     />
   );
