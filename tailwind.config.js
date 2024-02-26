@@ -22,11 +22,16 @@ module.exports = {
         fadeOut: {
           from: { opacity: 1 },
           to: { opacity: 0 }
+        },
+        progressSlide: {
+          from: { width: '0' },
+          to: { width: '100%' }
         }
       },
       animation: {
         fadeIn: 'fadeIn 0.5s',
-        fadeOut: 'fadeOut 0.5s'
+        fadeOut: 'fadeOut 0.5s',
+        progress: 'progressSlide 30s linear'
       }
     }
   },

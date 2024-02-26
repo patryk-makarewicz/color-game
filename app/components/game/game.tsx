@@ -7,23 +7,33 @@ import { useTranslation } from '@/i18n/client';
 const game = [
   {
     id: '1',
-    question: '1. Jaki jest numer pytania?',
-    options: ['4', '1', '2', '3'],
-    goodAnswer: '1'
+    question: 'Który z kolorów to biały?',
+    options: ['red', 'white', 'yellow', 'green'],
+    goodAnswer: 'white'
   },
   {
     id: '2',
-    question: '2. Jaka jest litera jest pierwsza w alfabecie?',
-    options: ['B', 'C', 'A', 'D'],
-    goodAnswer: 'A'
+    question: 'Który z kolorów to czarny?',
+    options: ['black', 'blue', 'purple', 'red'],
+    goodAnswer: 'black'
   },
   {
     id: '3',
-    question: '3. Jak mam na imię?',
-    options: ['Zuzina', 'Kapista', 'Kotek', 'Patek'],
-    goodAnswer: 'Patek'
+    question: 'Który z kolorów to niebieski?',
+    options: ['yellow', 'green', 'red', 'blue'],
+    goodAnswer: 'blue'
   }
 ];
+
+const colorClasses: { [key: string]: string } = {
+  red: 'bg-red-500',
+  white: 'bg-white',
+  yellow: 'bg-yellow-500',
+  green: 'bg-green-500',
+  black: 'bg-black',
+  blue: 'bg-blue-500',
+  purple: 'bg-purple-500'
+};
 
 export const Game = ({ lng }: { lng: string }) => {
   const { t } = useTranslation(lng);
@@ -59,16 +69,23 @@ export const Game = ({ lng }: { lng: string }) => {
 
   return (
     <div>
-      <h1>Content</h1>
-      {currentQuestion < game.length && <h3>Time left: {timer} seconds</h3>}
+      {currentQuestion < game.length && (
+        <div>
+          <h3>Time left: {timer} seconds</h3>
+        </div>
+      )}
       <h3>Your points: {points}</h3>
       {currentQuestion < game.length && (
         <div key={game[currentQuestion].id}>
+          <div className="animate-progress h-2 rounded-md bg-appPrimary" />
           <div>{game[currentQuestion].question}</div>
           <div className="flex gap-3">
             {game[currentQuestion].options.map((option, idx) => (
-              <button key={idx} onClick={() => handleClickAnswer(option, game[currentQuestion].goodAnswer)}>
-                {option}
+              <button
+                key={idx}
+                onClick={() => handleClickAnswer(option, game[currentQuestion].goodAnswer)}
+                className="flex gap-1">
+                <div className={`h-6 w-6 rounded-full border ${colorClasses[option]}`} /> {option}
               </button>
             ))}
           </div>
