@@ -3,17 +3,21 @@
   "page": {
     "home": {
       "description": "Color Game jest to gra dla dzieci do nauki kolorów",
-      "label": "Podaj swoje imię",
-      "button": {
-        "start": "Start",
-        "results": "Wyniki"
-      }
+      "label": "Podaj swoje imię"
     },
     "game": {
-      "description": "Game Page"
+      "greetings": "Cześć {{user}}! Zaczynamy, powodzenia!"
     },
     "results": {
       "description": "Results Page",
+      "back": "Powrót"
+    }
+  },
+
+  "components": {
+    "button": {
+      "start": "Start",
+      "results": "Wyniki",
       "back": "Powrót"
     }
   }
