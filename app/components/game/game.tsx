@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useTranslation } from '@/i18n/client';
 
@@ -29,19 +29,38 @@ export const Game = ({ lng }: { lng: string }) => {
   const { t } = useTranslation(lng);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [points, setPoints] = useState(0);
+  const [timer, setTimer] = useState(30);
 
   const handleClickAnswer = (option: string, goodAnswer: string) => {
     if (option === goodAnswer) {
-      setPoints((prev) => prev + 1);
+      setPoints((prev) => prev + 1 + timer);
       setCurrentQuestion((prevIndex) => prevIndex + 1);
     } else {
       setPoints((prev) => Math.max(prev - 1, 0));
     }
   };
 
+  useEffect(() => {
+    if (currentQuestion >= game.length) {
+      return;
+    }
+
+    setTimer(30);
+    const interval = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer > 0) return prevTimer - 1;
+        clearInterval(interval);
+        return 0;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [currentQuestion]);
+
   return (
     <div>
       <h1>Content</h1>
+      {currentQuestion < game.length && <h3>Time left: {timer} seconds</h3>}
       <h3>Your points: {points}</h3>
       {currentQuestion < game.length && (
         <div key={game[currentQuestion].id}>
