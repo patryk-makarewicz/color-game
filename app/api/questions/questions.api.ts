@@ -6,3 +6,5 @@ import { QuestionsDTO } from './questions.model';
 
 export const getQuestionsList = () =>
   !useAPImocks ? getQuestionsListMock() : axios.get<QuestionsDTO>('/api/questions').then(({ data }) => data);
+
+//TODO - get questions from db
