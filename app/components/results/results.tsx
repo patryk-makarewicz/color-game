@@ -1,11 +1,13 @@
-'use client';
+import { ResultsListDTO } from '@/api/results/results.model';
 
-export const Results = () => {
+export const Results = ({ results }: { results: ResultsListDTO }) => {
   return (
     <ul>
-      <li>1. Kacper - 100 pkt.</li>
-      <li>2. Zuzia - 100 pkt.</li>
-      <li>3. Jogi - 100 pkt.</li>
+      {results.records.map((player, idx) => (
+        <li key={player.id}>
+          {idx + 1}. {player.fields.name} - {player.fields.points} pkt.
+        </li>
+      ))}
     </ul>
   );
 };
