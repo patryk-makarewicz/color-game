@@ -1,6 +1,7 @@
-import { QuestionsAPI } from '@/services';
-import { QueryKey } from '@/services/queryKeys';
 import { useQuery } from '@tanstack/react-query';
+
+import { QuestionsAPI } from '@/api';
+import { QueryKey } from '@/api/queryKeys';
 
 export const useQuestionsList = () => {
   const { data, isPending, isError } = useQuery({
