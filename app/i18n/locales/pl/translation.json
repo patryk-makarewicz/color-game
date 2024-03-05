@@ -6,7 +6,11 @@
       "label": "Podaj swoje imię"
     },
     "game": {
-      "greetings": "Cześć {{user}}! Zaczynamy, powodzenia!"
+      "congrats": "gratulacje! Ooo wow!",
+      "loading": "Wczytywanie...",
+      "error": "Wystapił błąd, odśwież aplikację i spróbuj ponownie",
+      "timeLeft": "Czas",
+      "points": "Zdobyte punkty"
     },
     "results": {
       "description": "Wyniki 10 najlepszych graczy",

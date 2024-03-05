@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { useQuestionsList } from '@/hooks/useQuestionsList';
 import { useTranslation } from '@/i18n/client';
 
+import { Congrats } from '../congrats';
+
 const colorClasses: { [key: string]: string } = {
   red: 'bg-red-500',
   white: 'bg-white',
@@ -47,12 +49,12 @@ export const Game = ({ lng }: { lng: string }) => {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [currentQuestion]);
+  }, [currentQuestion, isPending]);
 
   if (isPending) {
     return (
       <div>
-        <p>Loading...</p>
+        <p className="text-lg text-appPrimary">{t('page.game.loading')}</p>
       </div>
     );
   }
@@ -60,34 +62,47 @@ export const Game = ({ lng }: { lng: string }) => {
   if (isError) {
     return (
       <div>
-        <p>Error, refresh page please</p>
+        <p className="text-center text-lg text-appPrimary">{t('page.game.error')}</p>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-3">
+      <p className="text-center">
+        {t('page.game.points')}: <span className="font-semibold text-appPrimary">{points}</span>
+      </p>
+
       {currentQuestion < data.length && (
-        <div>
-          <h3>Time left: {timer} seconds</h3>
-        </div>
-      )}
-      <h3>Your points: {points}</h3>
-      {currentQuestion < data.length && (
-        <div key={data[currentQuestion].id}>
-          <div className="h-2 animate-progress rounded-md bg-appPrimary" />
-          <div>{data[currentQuestion].question}</div>
-          <div className="flex gap-3">
-            {data[currentQuestion].options.map((option, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleClickAnswer(option, data[currentQuestion].goodAnswer)}
-                className="flex gap-1">
-                <div className={`h-6 w-6 rounded-full border ${colorClasses[option]}`} /> {option}
-              </button>
-            ))}
+        <>
+          <div className="mb-4">
+            <p className="text-center">
+              {t('page.game.timeLeft')}: <span className="font-semibold text-appPrimary">{timer}</span>
+            </p>
+
+            <div key={data[currentQuestion].id} className="h-2 animate-progress rounded-md bg-appPrimary" />
           </div>
-        </div>
+
+          <div key={data[currentQuestion].id} className="mb-4">
+            <p className="mb-3 text-center">{data[currentQuestion].question}</p>
+            <div className="flex gap-3">
+              {data[currentQuestion].options.map((option, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleClickAnswer(option, data[currentQuestion].goodAnswer)}
+                  className="flex gap-1 duration-300 ease-in-out hover:opacity-70">
+                  <div className={`h-6 w-6 rounded-full border ${colorClasses[option]}`} /> {option}
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      {currentQuestion === data.length && (
+        <>
+          <Congrats lng={lng} />
+        </>
       )}
     </div>
   );

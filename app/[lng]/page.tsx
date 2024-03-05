@@ -15,9 +15,9 @@ const Home = async ({ params: { lng } }: lngProps) => {
 
   return (
     <main className="flex h-screen items-center justify-center">
-      <div className="mx-3 flex w-96 flex-col items-center gap-6 rounded p-8 shadow-xl">
+      <div className="mx-3 flex w-96 flex-col items-center gap-6">
         <h3 className="text-2xl font-bold text-appPrimary">{t('app')}</h3>
-        <p className="text-lg">{t('page.home.description')}</p>
+        <p className="text-center text-lg">{t('page.home.description')}</p>
         <User lng={lng} />
         <Link href={`/${lng}/results`}>
           <Button>{t('components.button.results')}</Button>
