@@ -9,7 +9,12 @@
       "greetings": "Cześć {{user}}! Zaczynamy, powodzenia!"
     },
     "results": {
-      "description": "Results Page",
+      "description": "Wyniki 10 najlepszych graczy",
+      "position": "Pozycja",
+      "name": "Imię",
+      "points": "Punkty",
+      "date": "Data",
+      "noResults": "Brak wyników",
       "back": "Powrót"
     }
   },

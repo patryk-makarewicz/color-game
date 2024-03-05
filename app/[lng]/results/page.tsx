@@ -13,11 +13,10 @@ const ResultsPage = async ({ params: { lng } }: lngProps) => {
 
   return (
     <div className="flex h-screen items-center justify-center ">
-      <div className="mx-3 flex w-96 flex-col items-center gap-6 rounded p-8 shadow-xl">
+      <div className="mx-3 flex w-full flex-col items-center gap-6 p-8">
         <h3 className="text-2xl font-bold text-appPrimary">{t('app')}</h3>
         <p className="text-lg">{t('page.results.description')}</p>
-        {!results && <p>No results</p>}
-        {results && <Results results={results} />}
+        <Results results={results} lng={lng} />
         <Link href={`/${lng}`} className="pb-6">
           <Button>{t('components.button.back')}</Button>
         </Link>

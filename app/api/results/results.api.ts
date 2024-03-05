@@ -7,7 +7,7 @@ export const getResultsList = async (): Promise<ResultsListDTO> => {
     return getResultsListMock();
   } else {
     const response = await fetch(
-      `${BASE_URL}/results?view=default&sort%5B0%5D%5Bfield%5D=points&sort%5B0%5D%5Bdirection%5D=desc`,
+      `${BASE_URL}/results?view=default&sort%5B0%5D%5Bfield%5D=points&sort%5B0%5D%5Bdirection%5D=desc&maxRecords=10`,
       {
         headers,
         cache: 'no-cache'
