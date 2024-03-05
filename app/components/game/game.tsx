@@ -3,16 +3,19 @@
 import { colorClasses } from '@/helpers/colorsClasses';
 import { useEffect, useState } from 'react';
 
+import { postUserResult } from '@/api/results/results.api';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useQuestionsList } from '@/hooks/useQuestionsList';
 import { useTranslation } from '@/i18n/client';
 
-import { Congrats } from '../congrats';
+import { Button } from '../button';
 
 export const Game = ({ lng }: { lng: string }) => {
   const { t } = useTranslation(lng);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [points, setPoints] = useState(0);
   const [timer, setTimer] = useState(30);
+  const [userName] = useLocalStorage('color-game-user', '');
 
   const { data, isPending, isError } = useQuestionsList();
 
@@ -23,6 +26,19 @@ export const Game = ({ lng }: { lng: string }) => {
     } else {
       setPoints((prev) => Math.max(prev - 1, 0));
     }
+  };
+
+  const handleSaveResult = () => {
+    postUserResult({
+      records: [
+        {
+          fields: {
+            name: userName,
+            points
+          }
+        }
+      ]
+    });
   };
 
   useEffect(() => {
@@ -80,7 +96,18 @@ export const Game = ({ lng }: { lng: string }) => {
         </>
       )}
 
-      {currentQuestion === data.length && <Congrats lng={lng} />}
+      {currentQuestion === data.length && (
+        <>
+          <p className="text-lg">
+            <span className="font-bold text-appPrimary">{userName}</span> {t('page.game.congrats')}
+          </p>
+          <div className="m-auto w-fit">
+            <Button kind="secondary" onClick={handleSaveResult}>
+              {t('page.game.sendResult')}
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

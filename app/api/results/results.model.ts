@@ -10,3 +10,12 @@ export type ResultModel = {
 export type ResultsListDTO = {
   records: ResultModel[];
 };
+
+export type UserResultModel = {
+  records: {
+    fields: {
+      name: string;
+      points: number;
+    };
+  }[];
+};
