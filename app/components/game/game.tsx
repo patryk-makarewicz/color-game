@@ -1,21 +1,12 @@
 'use client';
 
+import { colorClasses } from '@/helpers/colorsClasses';
 import { useEffect, useState } from 'react';
 
 import { useQuestionsList } from '@/hooks/useQuestionsList';
 import { useTranslation } from '@/i18n/client';
 
 import { Congrats } from '../congrats';
-
-const colorClasses: { [key: string]: string } = {
-  red: 'bg-red-500',
-  white: 'bg-white',
-  yellow: 'bg-yellow-500',
-  green: 'bg-green-500',
-  black: 'bg-black',
-  blue: 'bg-blue-500',
-  purple: 'bg-purple-500'
-};
 
 export const Game = ({ lng }: { lng: string }) => {
   const { t } = useTranslation(lng);
@@ -52,19 +43,11 @@ export const Game = ({ lng }: { lng: string }) => {
   }, [currentQuestion, isPending]);
 
   if (isPending) {
-    return (
-      <div>
-        <p className="text-lg text-appPrimary">{t('page.game.loading')}</p>
-      </div>
-    );
+    return <p className="text-lg text-appPrimary">{t('page.game.loading')}</p>;
   }
 
   if (isError) {
-    return (
-      <div>
-        <p className="text-center text-lg text-appPrimary">{t('page.game.error')}</p>
-      </div>
-    );
+    return <p className="text-center text-lg text-appPrimary">{t('page.game.error')}</p>;
   }
 
   return (
@@ -79,10 +62,8 @@ export const Game = ({ lng }: { lng: string }) => {
             <p className="text-center">
               {t('page.game.timeLeft')}: <span className="font-semibold text-appPrimary">{timer}</span>
             </p>
-
             <div key={data[currentQuestion].id} className="h-2 animate-progress rounded-md bg-appPrimary" />
           </div>
-
           <div key={data[currentQuestion].id} className="mb-4">
             <p className="mb-3 text-center">{data[currentQuestion].question}</p>
             <div className="flex gap-3">
@@ -99,11 +80,7 @@ export const Game = ({ lng }: { lng: string }) => {
         </>
       )}
 
-      {currentQuestion === data.length && (
-        <>
-          <Congrats lng={lng} />
-        </>
-      )}
+      {currentQuestion === data.length && <Congrats lng={lng} />}
     </div>
   );
 };
