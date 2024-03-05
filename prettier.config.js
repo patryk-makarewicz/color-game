@@ -9,7 +9,7 @@ module.exports = {
   importOrder: [
     '^(next/(.*)$)|^(next$)',
     '<THIRD_PARTY_MODULES>',
-    '^(@/app|@/api|@/assets|@/redux|@/hooks|@/components|@/i18n|@/lib|@/utils|@/translations|@/layouts|@/styles)/?',
+    '^(@/app|@/api|@/assets|@/redux|@/hooks|@/components|@/i18n|@/lib|@/utils|@/helpers|@/translations|@/layouts|@/styles)/?',
     '^[./]'
   ],
   plugins: [require.resolve('@trivago/prettier-plugin-sort-imports'), require.resolve('prettier-plugin-tailwindcss')]
