@@ -1,3 +1,4 @@
 export const QueryKey = {
-  loadQuestions: 'loadQuestions'
+  loadQuestions: 'loadQuestions',
+  saveResult: 'saveResult'
 };

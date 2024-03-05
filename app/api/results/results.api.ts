@@ -20,16 +20,6 @@ export const getResultsList = async (): Promise<ResultsListDTO> => {
   }
 };
 
-export const postUserResult = async (data: UserResultModel): Promise<UserResultModel> => {
-  const response = await fetch(`${BASE_URL}/results`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(data)
-  });
-
-  if (!response.ok) {
-    throw new Error('Something is wrong, network error');
-  }
-
-  return response.json();
+export const postUserResult = (data: UserResultModel): Promise<UserResultModel> => {
+  return axios.post<UserResultModel>(`${BASE_URL}/results`, data, { headers }).then(({ data }) => data);
 };

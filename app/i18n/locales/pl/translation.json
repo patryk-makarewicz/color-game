@@ -11,7 +11,8 @@
       "error": "Wystapił błąd, odśwież aplikację i spróbuj ponownie",
       "timeLeft": "Czas",
       "points": "Zdobyte punkty",
-      "sendResult": "Zapisz wynik"
+      "sendResult": "Zapisz wynik",
+      "sendingResult": "Zapisywanie..."
     },
     "results": {
       "description": "Wyniki 10 najlepszych graczy",

@@ -1,11 +1,13 @@
 'use client';
 
+import Link from 'next/link';
+
 import { colorClasses } from '@/helpers/colorsClasses';
 import { useEffect, useState } from 'react';
 
-import { postUserResult } from '@/api/results/results.api';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useQuestionsList } from '@/hooks/useQuestionsList';
+import { useSaveResult } from '@/hooks/useSaveResult';
 import { useTranslation } from '@/i18n/client';
 
 import { Button } from '../button';
@@ -18,6 +20,7 @@ export const Game = ({ lng }: { lng: string }) => {
   const [userName] = useLocalStorage('color-game-user', '');
 
   const { data, isPending, isError } = useQuestionsList();
+  const { mutate: saveUserResult, isPending: isSaveUserResultPending } = useSaveResult();
 
   const handleClickAnswer = (option: string, goodAnswer: string) => {
     if (option === goodAnswer) {
@@ -29,7 +32,7 @@ export const Game = ({ lng }: { lng: string }) => {
   };
 
   const handleSaveResult = () => {
-    postUserResult({
+    saveUserResult({
       records: [
         {
           fields: {
@@ -98,16 +101,22 @@ export const Game = ({ lng }: { lng: string }) => {
 
       {currentQuestion === data.length && (
         <>
-          <p className="text-lg">
+          <p className="mb-2 text-lg">
             <span className="font-bold text-appPrimary">{userName}</span> {t('page.game.congrats')}
           </p>
-          <div className="m-auto w-fit">
-            <Button kind="secondary" onClick={handleSaveResult}>
-              {t('page.game.sendResult')}
+          <div className="m-auto mb-3 w-fit">
+            <Button kind="secondary" disabled={isSaveUserResultPending} onClick={handleSaveResult}>
+              {isSaveUserResultPending ? t('page.game.sendingResult') : t('page.game.sendResult')}
             </Button>
           </div>
         </>
       )}
+
+      <div className="m-auto w-fit">
+        <Link href={`/${lng}`} className="pb-6">
+          <Button disabled={isSaveUserResultPending}>{t('components.button.back')}</Button>
+        </Link>
+      </div>
     </div>
   );
 };
