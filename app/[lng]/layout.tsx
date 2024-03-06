@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: 'A Color Game App (PWA) to learn names of colors.',
   category: 'game',
   generator: 'Next.js',
-  manifest: '/public/manifest.json',
+  manifest: 'manifest.json',
   keywords: ['nextjs', 'nextjs13', 'next13', 'pwa', 'next-pwa'],
   authors: [
     { name: 'Patryk Makarewicz' },
@@ -23,8 +23,10 @@ export const metadata: Metadata = {
     }
   ],
   icons: [
-    { rel: 'apple-touch-icon', url: 'pwa/apple-touch-icon.png' },
-    { rel: 'icon', url: 'pwa/favicon-32x32.png' }
+    { rel: 'apple-touch-icon', sizes: '180x180', url: 'pwa/apple-touch-icon.png' },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', url: 'pwa/favicon-32x32.png' },
+    { rel: 'icon', type: 'image/png', sizes: '16x16', url: 'pwa/favicon-16x16.png' },
+    { rel: 'mask-icon', url: 'pwa/safari-pinned-tab.svg' }
   ]
 };
 
