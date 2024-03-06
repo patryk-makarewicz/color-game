@@ -7,12 +7,21 @@ type useTimerProps = {
   isQuestionsListPending: boolean;
 };
 
-export const useTimer = ({ questionsList, isQuestionsListPending }: useTimerProps) => {
+export const useTimerAndPoints = ({ questionsList, isQuestionsListPending }: useTimerProps) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [timer, setTimer] = useState(30);
+  const [points, setPoints] = useState(0);
 
   const handleSetNextCurrentQuestion = () => {
     setCurrentQuestion((prevIndex) => prevIndex + 1);
+  };
+
+  const handleAddPoints = () => {
+    setPoints((prev) => prev + 1 + timer);
+  };
+
+  const handleDeductPoints = () => {
+    setPoints((prev) => Math.max(prev - 1, 0));
   };
 
   useEffect(() => {
@@ -32,5 +41,5 @@ export const useTimer = ({ questionsList, isQuestionsListPending }: useTimerProp
     return () => clearInterval(interval);
   }, [currentQuestion, isQuestionsListPending]);
 
-  return { currentQuestion, timer, handleSetNextCurrentQuestion };
+  return { currentQuestion, timer, handleSetNextCurrentQuestion, points, handleAddPoints, handleDeductPoints };
 };

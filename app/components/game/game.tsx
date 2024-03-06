@@ -2,32 +2,33 @@
 
 import Link from 'next/link';
 
-import { useEffect, useState } from 'react';
-
 import { colorClasses } from '@/helpers/colorsClasses';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useQuestionsList } from '@/hooks/useQuestionsList';
 import { useSaveResult } from '@/hooks/useSaveResult';
-import { useTimer } from '@/hooks/useTimer';
+import { useTimerAndPoints } from '@/hooks/useTimerAndPoints';
 import { useTranslation } from '@/i18n/client';
 
 import { Button } from '../button';
 
 export const Game = ({ lng }: { lng: string }) => {
   const { t } = useTranslation(lng);
-  const [points, setPoints] = useState(0);
   const [userName] = useLocalStorage('color-game-user', '');
 
   const { data: questionsList, isPending: isQuestionsListPending, isError: isQuestionsListError } = useQuestionsList();
   const { mutate: saveUserResult, isPending: isSaveUserResultPending } = useSaveResult();
-  const { currentQuestion, timer, handleSetNextCurrentQuestion } = useTimer({ questionsList, isQuestionsListPending });
+  const { currentQuestion, timer, handleSetNextCurrentQuestion, points, handleAddPoints, handleDeductPoints } =
+    useTimerAndPoints({
+      questionsList,
+      isQuestionsListPending
+    });
 
   const handleClickAnswer = (option: string, goodAnswer: string) => {
     if (option === goodAnswer) {
-      setPoints((prev) => prev + 1 + timer);
+      handleAddPoints();
       handleSetNextCurrentQuestion();
     } else {
-      setPoints((prev) => Math.max(prev - 1, 0));
+      handleDeductPoints();
     }
   };
 
