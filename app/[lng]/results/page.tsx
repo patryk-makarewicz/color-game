@@ -13,7 +13,7 @@ const ResultsPage = async ({ params: { lng } }: lngProps) => {
 
   return (
     <div className="flex h-screen items-center justify-center ">
-      <div className="mx-3 flex w-full flex-col items-center gap-6 p-8">
+      <div className="mx-2 flex w-full flex-col items-center gap-6">
         <h3 className="text-2xl font-bold text-appPrimary">{t('app')}</h3>
         <p className="text-lg">{t('page.results.description')}</p>
         <Results results={results} lng={lng} />

@@ -16,7 +16,7 @@
     },
     "results": {
       "description": "Wyniki 10 najlepszych graczy",
-      "position": "Pozycja",
+      "position": "Poz.",
       "name": "Imię",
       "points": "Punkty",
       "date": "Data",
