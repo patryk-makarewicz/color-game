@@ -12,15 +12,13 @@ const ResultsPage = async ({ params: { lng } }: lngProps) => {
   const results = await getResultsList();
 
   return (
-    <div className="flex h-screen items-center justify-center ">
-      <div className="mx-2 flex w-full flex-col items-center gap-6">
-        <h3 className="text-2xl font-bold text-appPrimary">{t('app')}</h3>
-        <p className="text-lg">{t('page.results.description')}</p>
-        <Results results={results} lng={lng} />
-        <Link href={`/${lng}`} className="pb-6">
-          <Button>{t('components.button.back')}</Button>
-        </Link>
-      </div>
+    <div className="m-auto flex min-h-screen w-fit max-w-md  flex-col items-center justify-center gap-6 p-2">
+      <h3 className="text-2xl font-bold text-appPrimary">{t('app')}</h3>
+      <p className="text-lg">{t('page.results.description')}</p>
+      <Results results={results} lng={lng} />
+      <Link href={`/${lng}`} className="pb-6">
+        <Button>{t('components.button.back')}</Button>
+      </Link>
     </div>
   );
 };
