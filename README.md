@@ -13,7 +13,6 @@ This is the color game for kids.
 ✔ TypeScript<br />
 ✔ JavaScript<br />
 ✔ Rest API<br />
-✔ React Hook Form<br />
 ✔ AirTable<br />
 ✔ Tailwind<br />
 
