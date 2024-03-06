@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     { rel: 'apple-touch-icon', sizes: '180x180', url: 'pwa/apple-touch-icon.png' },
     { rel: 'icon', type: 'image/png', sizes: '32x32', url: 'pwa/favicon-32x32.png' },
     { rel: 'icon', type: 'image/png', sizes: '16x16', url: 'pwa/favicon-16x16.png' },
+    { rel: 'icon', type: 'image/png', sizes: '256x256', url: 'pwa/android-chrome-256x256.png' },
+    { rel: 'icon', type: 'image/png', sizes: '192x192', url: 'pwa/android-chrome-192x192.png' },
+    { rel: 'icon', type: 'image/png', sizes: '150x150', url: 'pwa/mstile-150x150.png' },
     { rel: 'mask-icon', url: 'pwa/safari-pinned-tab.svg' }
   ]
 };
