@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   category: 'game',
   generator: 'Next.js',
   manifest: 'manifest.json',
-  keywords: ['nextjs', 'nextjs13', 'next13', 'pwa', 'next-pwa'],
+  keywords: ['next', 'next.js', 'next.js 14', 'pwa', 'next-pwa'],
   authors: [
     { name: 'Patryk Makarewicz' },
     {
       name: 'Patryk Makarewicz',
-      url: 'https://www.linkedin.com/XYZ'
+      url: 'https://www.linkedin.com/in/patryk-makarewicz/'
     }
   ],
   icons: [
