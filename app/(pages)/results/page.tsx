@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { lngProps } from '@/[lng]/page';
+import { lngProps } from '@/(pages)/page';
 
 import { getResultsList } from '@/api/results/results.api';
 import { Button } from '@/components/button';
@@ -20,7 +20,7 @@ const ResultsPage = async ({ params: { lng } }: lngProps) => {
         <Title lng={lng} />
         <Description>{t('page.results.description')}</Description>
         <Results results={results} lng={lng} />
-        <Link href={`/${lng}`} className="pb-6">
+        <Link href={`/`} className="pb-6">
           <Button>{t('components.button.back')}</Button>
         </Link>
       </GameLayout>
