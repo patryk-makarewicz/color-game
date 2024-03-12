@@ -32,7 +32,7 @@ export const User = ({ lng }: { lng: string }) => {
         minLength={3}
         maxLength={20}
       />
-      <Link href={`/${lng}/game`}>
+      <Link href={`/game`}>
         <Button disabled={disabledButton}>{t('components.button.start')}</Button>
       </Link>
     </div>

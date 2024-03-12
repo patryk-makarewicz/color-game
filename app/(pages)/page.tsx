@@ -24,7 +24,7 @@ const Home = async ({ params: { lng } }: lngProps) => {
         <Title lng={lng} />
         <Description>{t('page.home.description')}</Description>
         <User lng={lng} />
-        <Link href={`/${lng}/results`}>
+        <Link href={`/results`}>
           <Button>{t('components.button.results')}</Button>
         </Link>
       </GameLayout>

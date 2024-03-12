@@ -97,7 +97,7 @@ export const Game = ({ lng }: { lng: string }) => {
       )}
 
       <div className="m-auto w-fit">
-        <Link href={`/${lng}`} className="pb-6">
+        <Link href={`/`} className="pb-6">
           <Button disabled={isSaveUserResultPending}>{t('components.button.back')}</Button>
         </Link>
       </div>
