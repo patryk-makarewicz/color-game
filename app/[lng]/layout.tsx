@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
 import { ReactQueryProvider } from '@/providers/reactQueryProvider';
+import { dir } from 'i18next';
 
 import '@/styles/globals.css';
 
@@ -51,7 +52,7 @@ type RootLayoutProps = {
 
 const RootLayout = ({ children, params: { lng } }: RootLayoutProps) => {
   return (
-    <html lang={lng}>
+    <html lang={lng} dir={dir(lng)}>
       <body className={inter.className}>
         <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>

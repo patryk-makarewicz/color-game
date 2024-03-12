@@ -1,4 +1,4 @@
-import { lngProps } from '@/(pages)/page';
+import { lngProps } from '@/[lng]/page';
 
 import { Game } from '@/components/game';
 import { Title } from '@/components/typography/title';
