@@ -1,23 +1,21 @@
 'use client';
 
 import i18next from 'i18next';
-// import LocizeBackend from 'i18next-locize-backend'
 import LanguageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { initReactI18next, useTranslation as useTranslationOrg } from 'react-i18next';
 
-import { getOptions, languages, cookieName } from './settings';
+import { getOptions, languages } from './settings';
 
 const runsOnServerSide = typeof window === 'undefined';
 
-// on client side the normal singleton is ok
+//
 i18next
   .use(initReactI18next)
   .use(LanguageDetector)
   .use(resourcesToBackend((language, namespace) => import(`./locales/${language}/${namespace}.json`)))
-  // .use(LocizeBackend) // locize backend could be used on client side, but prefer to keep it in sync with server side
   .init({
     ...getOptions(),
     lng: undefined, // let detect the language on client side
@@ -28,7 +26,7 @@ i18next
   });
 
 export function useTranslation(lng, ns, options) {
-  const [cookies, setCookie] = useCookies([cookieName]);
+  const [cookies, setCookie] = useCookies(['i18next']);
   const ret = useTranslationOrg(ns, options);
   const { i18n } = ret;
   if (runsOnServerSide && lng && i18n.resolvedLanguage !== lng) {
@@ -49,7 +47,7 @@ export function useTranslation(lng, ns, options) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       if (cookies.i18next === lng) return;
-      setCookie(cookieName, lng, { path: '/' });
+      setCookie('i18next', lng, { path: '/' });
     }, [lng, cookies.i18next]);
   }
   return ret;
