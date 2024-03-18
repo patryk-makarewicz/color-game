@@ -23,12 +23,17 @@ export const Game = ({ lng }: { lng: string }) => {
       isQuestionsListPending
     });
 
+  const goodAnswerSound = new Audio('/answer-good.mp3');
+  const errorAnswerSound = new Audio('/answer-error.mp3');
+
   const handleClickAnswer = (option: string, goodAnswer: string) => {
     if (option === goodAnswer) {
       handleAddPoints();
       handleSetNextCurrentQuestion();
+      goodAnswerSound.play();
     } else {
       handleDeductPoints();
+      errorAnswerSound.play();
     }
   };
 
