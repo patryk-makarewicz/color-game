@@ -31,5 +31,9 @@
       "results": "Wyniki",
       "back": "Powrót"
     }
+  },
+
+  "footer": {
+    "copyright": "Copyright Ⓒ {{year}} makaDev Patryk Makarewicz, version 1.0"
   }
 }
