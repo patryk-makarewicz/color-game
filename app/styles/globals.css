@@ -17,9 +17,6 @@
 body {
   color: rgb(var(--text));
   background: rgb(var(--background));
-  min-height: 100vh;
-  /* mobile viewport */
-  min-height: -webkit-fill-available;
 }
 
 @layer utilities {
