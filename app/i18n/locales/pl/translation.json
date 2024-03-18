@@ -1,5 +1,10 @@
 {
-  "app": "Colors Game",
+  "app": "Color Game",
+
+  "footer": {
+    "copyright": "Copyright Ⓒ {{year}} makaDev Patryk Makarewicz, ver. 1.2"
+  },
+
   "page": {
     "home": {
       "description": "Color Game jest to gra dla dzieci do nauki kolorów",
@@ -31,9 +36,5 @@
       "results": "Wyniki",
       "back": "Powrót"
     }
-  },
-
-  "footer": {
-    "copyright": "Copyright Ⓒ {{year}} makaDev Patryk Makarewicz, ver. 1.1"
   }
 }
