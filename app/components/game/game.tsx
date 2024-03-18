@@ -3,9 +3,11 @@
 import Link from 'next/link';
 
 import { colorClasses } from '@/helpers/colorsClasses';
+import { useClickSound } from '@/hooks/useClickSound';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useQuestionsList } from '@/hooks/useQuestionsList';
 import { useSaveResult } from '@/hooks/useSaveResult';
+import { useTimePassingSound } from '@/hooks/useTimePassingSound';
 import { useTimerAndPoints } from '@/hooks/useTimerAndPoints';
 import { useTranslation } from '@/i18n/client';
 
@@ -23,12 +25,17 @@ export const Game = ({ lng }: { lng: string }) => {
       isQuestionsListPending
     });
 
+  const { playGoodAnswerSound, playErrorAnswerSound } = useClickSound();
+  useTimePassingSound(currentQuestion, questionsList.length);
+
   const handleClickAnswer = (option: string, goodAnswer: string) => {
     if (option === goodAnswer) {
       handleAddPoints();
       handleSetNextCurrentQuestion();
+      playGoodAnswerSound();
     } else {
       handleDeductPoints();
+      playErrorAnswerSound();
     }
   };
 

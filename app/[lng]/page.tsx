@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import { Button } from '@/components/button';
-import { Logo } from '@/components/logo/logo';
 import { Description } from '@/components/typography/description/description';
 import { Title } from '@/components/typography/title';
 import { User } from '@/components/user';
@@ -20,7 +19,6 @@ const Home = async ({ params: { lng } }: lngProps) => {
   return (
     <main>
       <GameLayout>
-        <Logo />
         <Title lng={lng} />
         <Description>{t('page.home.description')}</Description>
         <User lng={lng} />
