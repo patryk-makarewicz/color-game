@@ -1,6 +1,6 @@
 {
-  "name": "Color Game App",
-  "short_name": "CGA",
+  "name": "Color Game",
+  "short_name": "Color Game",
   "description": "A Color Game App (Progressive Web App) to learn names of colors.",
   "start_url": "/",
   "display": "standalone",
