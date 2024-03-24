@@ -2,7 +2,7 @@
 
 # General info
 
-This is the color game for kids.
+A Color Game App to learn names of colors for kids.
 <br />
 
 ## What's inside?
@@ -16,11 +16,11 @@ This is the color game for kids.
 ✔ AirTable<br />
 ✔ Tailwind<br />
 
-<!-- ## Link to website
+## Link to website
 
 To watch click [here]
 
-[here]: https://users-patryk-makarewicz.vercel.app/ -->
+[here]: https://color-game-patrykmakarewiczs-projects.vercel.app/
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

@@ -10,7 +10,7 @@ import '@/styles/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Color Game App',
+  title: 'Color Game',
   description: 'A Color Game App (PWA) to learn names of colors.',
   category: 'game',
   generator: 'Next.js',
