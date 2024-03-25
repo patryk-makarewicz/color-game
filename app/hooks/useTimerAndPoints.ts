@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { QuestionsDTO } from '@/api/questions/questions.model';
-
 type useTimerProps = {
-  questionsList: QuestionsDTO;
+  questionsAmount: number;
   isQuestionsListPending: boolean;
 };
 
-export const useTimerAndPoints = ({ questionsList, isQuestionsListPending }: useTimerProps) => {
+export const useTimerAndPoints = ({ questionsAmount, isQuestionsListPending }: useTimerProps) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [timer, setTimer] = useState(30);
   const [points, setPoints] = useState(0);
@@ -25,7 +23,7 @@ export const useTimerAndPoints = ({ questionsList, isQuestionsListPending }: use
   };
 
   useEffect(() => {
-    if (currentQuestion >= questionsList.length) {
+    if (currentQuestion >= questionsAmount) {
       return;
     }
 
