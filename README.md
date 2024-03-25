@@ -2,7 +2,6 @@
 
 # General info
 
-A Color Game App to learn names of colors for kids.
 <br />
 
 ## What's inside?

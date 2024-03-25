@@ -2,6 +2,9 @@
 
 import Link from 'next/link';
 
+import { useEffect, useState } from 'react';
+
+import { QuestionsDTO } from '@/api/questions/questions.model';
 import { colorClasses } from '@/helpers/colorsClasses';
 import { useClickSound } from '@/hooks/useClickSound';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
@@ -10,18 +13,20 @@ import { useSaveResult } from '@/hooks/useSaveResult';
 import { useTimePassingSound } from '@/hooks/useTimePassingSound';
 import { useTimerAndPoints } from '@/hooks/useTimerAndPoints';
 import { useTranslation } from '@/i18n/client';
+import { shuffleArray } from '@/utils/shuffleArray';
 
 import { Button } from '../button';
 
 export const Game = ({ lng }: { lng: string }) => {
   const { t } = useTranslation(lng);
   const [userName] = useLocalStorage('color-game-user', '');
+  const [shuffledQuestions, setShuffledQuestions] = useState<QuestionsDTO>([]);
 
   const { data: questionsList, isPending: isQuestionsListPending, isError: isQuestionsListError } = useQuestionsList();
   const { mutate: saveUserResult, isPending: isSaveUserResultPending } = useSaveResult();
   const { currentQuestion, timer, handleSetNextCurrentQuestion, points, handleAddPoints, handleDeductPoints } =
     useTimerAndPoints({
-      questionsList,
+      questionsList: shuffledQuestions,
       isQuestionsListPending
     });
 
@@ -52,6 +57,13 @@ export const Game = ({ lng }: { lng: string }) => {
     });
   };
 
+  useEffect(() => {
+    if (!isQuestionsListPending && !isQuestionsListError) {
+      const shuffledQuestions = shuffleArray(questionsList);
+      setShuffledQuestions(shuffledQuestions);
+    }
+  }, [questionsList, isQuestionsListPending, isQuestionsListError]);
+
   if (isQuestionsListPending) {
     return <p className="text-lg text-appPrimary">{t('page.game.loading')}</p>;
   }
@@ -66,21 +78,24 @@ export const Game = ({ lng }: { lng: string }) => {
         {t('page.game.points')}: <span className="font-semibold text-appPrimary">{points}</span>
       </p>
 
-      {currentQuestion < questionsList.length && (
+      {currentQuestion < shuffledQuestions.length && (
         <>
           <div className="mb-4">
             <p className="text-center">
               {t('page.game.timeLeft')}: <span className="font-semibold text-appPrimary">{timer}</span>
             </p>
-            <div key={questionsList[currentQuestion].id} className="h-2 animate-progress rounded-md bg-appPrimary" />
+            <div
+              key={shuffledQuestions[currentQuestion].id}
+              className="h-2 animate-progress rounded-md bg-appPrimary"
+            />
           </div>
-          <div key={questionsList[currentQuestion].id} className="mb-4">
-            <p className="mb-3 text-center">{questionsList[currentQuestion].question}</p>
+          <div key={shuffledQuestions[currentQuestion].id} className="mb-4">
+            <p className="mb-3 text-center">{shuffledQuestions[currentQuestion].question}</p>
             <div className="flex gap-3">
-              {questionsList[currentQuestion].options.map((option, idx) => (
+              {shuffledQuestions[currentQuestion].options.map((option, idx) => (
                 <button
                   key={idx}
-                  onClick={() => handleClickAnswer(option, questionsList[currentQuestion].goodAnswer)}
+                  onClick={() => handleClickAnswer(option, shuffledQuestions[currentQuestion].goodAnswer)}
                   className="flex gap-1 duration-300 ease-in-out hover:opacity-70">
                   <div className={`h-6 w-6 rounded-full border ${colorClasses[option]}`} /> {option}
                 </button>
@@ -90,7 +105,7 @@ export const Game = ({ lng }: { lng: string }) => {
         </>
       )}
 
-      {currentQuestion === questionsList.length && (
+      {currentQuestion === shuffledQuestions.length && (
         <>
           <p className="mb-2 text-lg">
             <span className="font-bold text-appPrimary">{userName}</span> {t('page.game.congrats')}
