@@ -15,11 +15,11 @@ export const useTimerAndPoints = ({ questionsAmount, isQuestionsListPending }: u
   };
 
   const handleAddPoints = () => {
-    setPoints((prev) => prev + 1 + timer);
+    setPoints((prev) => prev + 10 + timer);
   };
 
   const handleDeductPoints = () => {
-    setPoints((prev) => Math.max(prev - 1, 0));
+    setPoints((prev) => Math.max(prev - 10, 0));
   };
 
   useEffect(() => {

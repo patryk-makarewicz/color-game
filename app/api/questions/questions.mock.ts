@@ -41,7 +41,7 @@ export const getQuestionsListMock = () => {
     },
     {
       id: '7',
-      question: 'Który z kolorów to <b>purple</b>?',
+      question: 'Który z kolorów to purple?',
       options: ['fioletowy', 'czerwony', 'żółty', 'czarny'],
       goodAnswer: 'fioletowy'
     }
